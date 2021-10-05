@@ -41,6 +41,36 @@ jobs:
           MIDDLE_NAME: The
           LAST_NAME: Hacker
       # Step 3 - Add tests and linting here
+  docker:
+    needs: [build, test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Login
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME  }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Store docker image
+        uses: docker/metadata-action@v3
+        with:
+          images: acn_workshop/coffe_app
+      - name: Push docker image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
   deploy:
     needs: [build, test]
     runs-on: ubuntu-latest
