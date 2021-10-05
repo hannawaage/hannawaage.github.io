@@ -60,6 +60,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME  }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Store docker image
+        id: meta
         uses: docker/metadata-action@v3
         with:
           images: acn_workshop/coffe_app
