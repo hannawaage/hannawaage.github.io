@@ -63,7 +63,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: acn_workshop/coffe_app
+          images: acnworkshop/coffeapp
       - name: Push docker image
         uses: docker/build-push-action@v2
         with:
