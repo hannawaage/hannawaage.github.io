@@ -34,6 +34,12 @@ jobs:
         run: npm run lint:ts
       - name: Run styles lint and format check
         run: npm run lint:css
+      - name: "Hello world when tests run"
+        run: echo "Hello $FIRST_NAME $MIDDLE_NAME $LAST_NAME, today tests worked!"
+        env:
+          FIRST_NAME: Hanna
+          MIDDLE_NAME: The
+          LAST_NAME: Hacker
       # Step 3 - Add tests and linting here
   deploy:
     needs: [build, test]
