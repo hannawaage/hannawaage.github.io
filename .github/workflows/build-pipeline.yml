@@ -36,6 +36,7 @@ jobs:
         run: npm run lint:css
       - name: "Hello world when tests run"
         run: echo "Hello $FIRST_NAME $MIDDLE_NAME $LAST_NAME, today tests worked!"
+        run: echo "Your cool password is ${{secrets.PASSWORD}}"
         env:
           FIRST_NAME: Hanna
           MIDDLE_NAME: The
