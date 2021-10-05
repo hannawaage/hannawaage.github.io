@@ -35,7 +35,12 @@ jobs:
       - name: Run styles lint and format check
         run: npm run lint:css
       - name: "Hello world when tests run"
+<<<<<<< HEAD
         run: echo "Hello $FIRST_NAME $MIDDLE_NAME $LAST_NAME, today tests worked! Your cool password is ${{secrets.PASSWORD}}"
+=======
+        run: echo "Hello $FIRST_NAME $MIDDLE_NAME $LAST_NAME, today tests worked!"
+        run: echo "Your cool password is ${{secrets.PASSWORD}}"
+>>>>>>> 9816ac42b614d94d5e1e10753798395fbf8642e1
         env:
           FIRST_NAME: Hanna
           MIDDLE_NAME: The
